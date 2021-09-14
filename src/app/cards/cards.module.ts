@@ -9,9 +9,6 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatButtonModule} from '@angular/material/button';
 import { CardModalComponent } from './card-modal/card-modal.component';
 
-
-
-
 @NgModule({
   declarations: [
     CardsComponent,
