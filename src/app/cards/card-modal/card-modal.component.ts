@@ -13,6 +13,7 @@ import { CardService } from 'src/app/services/card.service';
 export class CardModalComponent implements OnInit {
 
   cardForm!:FormGroup;
+  showSpinner:boolean = false;
 
   constructor(
     private dialogRef:MatDialogRef<CardModalComponent>,
@@ -34,34 +35,39 @@ export class CardModalComponent implements OnInit {
   }
 
   addCard(): void {
-    console.log(this.cardForm.value);
+    this.showSpinner = true;
     this.cardService.addCard(this.cardForm.value).subscribe((res:any)=>{
       console.log(res);
       this._snackBar.open(res || 'Kartvizit başarıyla eklendi', '', {
         duration:4000,
       });
       this.cardService.getCards();
+      this.showSpinner = false;
       this.dialogRef.close();
     });
   }
 
   updateCard(): void {
+    this.showSpinner = true;
     this.cardService.updateCard(this.cardForm.value, this.data.id).subscribe((res:any)=>{
       console.log(res);
       this._snackBar.open(res || 'Kartvizit başarıyla güncellendi', '', {
         duration:4000,
       });
       this.cardService.getCards();
+      this.showSpinner = false;
       this.dialogRef.close();
     });
   }
 
   deleteCard(): void {
+    this.showSpinner = true;
     this.cardService.deleteCard(this.data.id).subscribe((res:any)=>{
       this._snackBar.open(res || 'Kartvizit başarıyla silindi', '', {
         duration:4000,
       });
       this.cardService.getCards();
+      this.showSpinner = false;
       this.dialogRef.close();
     });
   }
