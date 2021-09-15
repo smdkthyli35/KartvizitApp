@@ -22,12 +22,16 @@ export class CardService {
     });
   }
 
-  addCard(card:Card) {
+  addCard(card:Card) : Observable<any> {
     return this.httpClient.post(this.apiUrl + '/cards', card);
   }
 
-  updateCard(card:Card, cardId:number) {
+  updateCard(card:Card, cardId:number) : Observable<any>{
     return this.httpClient.put(this.apiUrl + '/cards/' + cardId,card);
+  }
+
+  deleteCard(cardId:number) : Observable<any>{
+    return this.httpClient.delete(this.apiUrl + '/cards/' + cardId);
   }
 
 }

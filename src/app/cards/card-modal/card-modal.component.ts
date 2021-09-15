@@ -56,4 +56,14 @@ export class CardModalComponent implements OnInit {
     });
   }
 
+  deleteCard(): void {
+    this.cardService.deleteCard(this.data.id).subscribe((res:any)=>{
+      this._snackBar.open(res || 'Kartvizit başarıyla silindi', '', {
+        duration:4000,
+      });
+      this.cardService.getCards();
+      this.dialogRef.close();
+    });
+  }
+
 }
